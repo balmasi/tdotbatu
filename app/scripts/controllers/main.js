@@ -3,9 +3,9 @@
 angular.module('batuApp')
   .controller('MainCtrl', function ($scope) {
     $scope.videoCollection = [
-        { link: "0KSOMA3QBU0", start: 0 },
-        { link: "hHimjVYsd6I", start: 0 },
-        { link: "kHue-HaXXzg", start: 0 },
+        { link: "0KSOMA3QBU0", start: 30 },
+        { link: "hHimjVYsd6I", start: 20},
+        { link: "kHue-HaXXzg", start: 10 },
 
 //      { link: "t1DZfMfJ63M", start: 0 },
 //      { link: "7rEyS90qpDk", start: 0 },
@@ -62,11 +62,12 @@ angular.module('batuApp')
                 onTimeEnd();
               }
             } , 1000);
-          },
-            onTimeEnd = function(){
-            e.target.playVideo()
+          };
+          var onTimeEnd = function(){
+            $scope.player.seekTo($scope.currentVideo.start).playVideo();
           };
 
+          $scope.player.seekTo(0.5).pauseVideo();
           timerClick();
         }
 
