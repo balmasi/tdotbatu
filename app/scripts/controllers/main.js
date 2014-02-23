@@ -50,7 +50,7 @@ angular.module('batuApp')
     return {
       restrict: 'E',
       template:
-        '<h1>{{timer}}</h1><div id="ytplayer"></div>'+
+        '<h3 id="timer" data-ng-hide="timer == 0">{{timer}}</h3><div id="ytplayer"></div>'+
         '<p><a class="btn btn-lg btn-success" data-ng-click="nextVideo()">Next</a></p>',
       scope: {
         videos: "="
@@ -83,10 +83,7 @@ angular.module('batuApp')
 
         $scope.nextVideo = function() {
           var nextVideo = $scope.getRandomVideo();
-
-          $scope.timer = 5;
-
-          console.info("Loading Video "+ nextVideo.link);
+          $scope.timer = 15;
           $scope.player.loadVideoById(nextVideo.link);
           startVideo();
         };
@@ -122,7 +119,7 @@ angular.module('batuApp')
       },
 
       link: function(scope, element, attr){
-        scope.timer = 7;
+        scope.timer = 15;
         var tag = document.createElement('script');
         var firstScriptTag = document.getElementsByTagName('script')[0];
         tag.src = "https://www.youtube.com/player_api";

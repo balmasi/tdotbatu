@@ -15,9 +15,22 @@ body {
     padding-bottom: 20px;
 }
 
+#timer {
+  position: Fixed;
+  top: 0;
+  left: 47%;
+  background: #88AC7D;
+  color: whitesmoke;
+  height: 50px;
+  width: 50px;
+  text-align: center;
+  border-radius: 50%;
+  border: 2px solid black;
+  line-height: 45px
+}
+
 /* Everything but the jumbotron gets side spacing for mobile first views */
 .header,
-.marketing,
 .footer {
     padding-left: 15px;
     padding-right: 15px;
@@ -80,20 +93,6 @@ ul.nav > li {
     border-bottom: 1px solid #e5e5e5;
 }
 
-.jumbotron .btn {
-    font-size: 21px;
-    padding: 14px 24px;
-}
-
-/* Supporting marketing content */
-.marketing {
-    margin: 40px 0;
-}
-
-.marketing p + h4 {
-    margin-top: 28px;
-}
-
 /* Responsive: Portrait tablets and up */
 @media screen and (min-width: 768px) {
     .container {
@@ -102,7 +101,6 @@ ul.nav > li {
 
     /* Remove the padding we set earlier */
     .header,
-    .marketing,
     .footer {
         padding-left: 0;
         padding-right: 0;
