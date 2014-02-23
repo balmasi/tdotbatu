@@ -1,8 +1,10 @@
 <nav class="pull-left">
-    <ul class="nav nav-pills nav-stacked span3">
-        <li ng-repeat="v in videoCollection" >
+    <ul class="nav nav-list nav-stacked span3">
+        <li ng-repeat-start="(group, videos) in groupedCollection" class="nav-header">{{group}}</li>
+        <li ng-repeat="v in videos">
             <a>{{v.link}}<img data-ng-show="v.watched" src="images/check.png"/></a>
         </li>
+        <br data-ng-hide="true" ng-repeat-end/>
     </ul>
 </nav>
 

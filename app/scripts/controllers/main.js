@@ -5,7 +5,13 @@ angular.module('batuApp')
     $scope.videoCollection = [
         { link: "0KSOMA3QBU0", start: 30, watched: false },
         { link: "hHimjVYsd6I", start: 20, watched: false },
-        { link: "kHue-HaXXzg", start: 10, watched: false },
+        { link: "kHue-HaXXzg", start: 10, watched: false }]
+
+    $scope.groupedCollection = _.groupBy($scope.videoCollection, 'watched');
+
+    $scope.$watch('videoCollection', function() {
+      $scope.groupedCollection = _.groupBy($scope.videoCollection, 'watched');
+    }, true);
 
 //      { link: "t1DZfMfJ63M", start: 0, watched: false },
 //      { link: "7rEyS90qpDk", start: 0, watched: false },
@@ -39,7 +45,6 @@ angular.module('batuApp')
 //      { link: "AVuHBHYFV_8", start: 0, watched: false },
 //      { link: "NWF1521xMb4", start: 0, watched: false },
 //      { link: "gEMcKbgZ0No", start: 0, watched: false }
-    ];
 
   }).directive('youtube',function(){
     return {

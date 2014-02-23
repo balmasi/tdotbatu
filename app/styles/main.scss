@@ -36,6 +36,33 @@ body {
     padding-bottom: 19px;
 }
 
+/* NAV*/
+ul.nav > li {
+  padding-left: 20px;
+
+  & > a{
+    padding-top: 0;
+    padding-bottom: 0;
+  }
+}
+.nav-header {
+  display: block;
+  padding: 3px 15px;
+  font-size: 11px;
+  font-weight: bold;
+  line-height: 20px;
+  color: #999999;
+  text-shadow: 0 1px 0 rgba(255, 255, 255, 0.5);
+  text-transform: uppercase;
+
+  &.nav-list {
+    margin-right: -15px;
+    margin-left: -15px;
+    text-shadow: 0 1px 0 rgba(255, 255, 255, 0.5);
+  }
+}
+
+
 /* Custom page footer */
 .footer {
     padding-top: 19px;
