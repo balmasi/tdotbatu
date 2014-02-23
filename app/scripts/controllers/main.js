@@ -44,32 +44,47 @@ angular.module('batuApp')
   }).directive('youtube',function(){
     return {
       restrict: 'E',
-      template:'<h1>{{timer}}</h1><div id="ytplayer"></div>',
+      template:
+        '<h1>{{timer}}</h1><div id="ytplayer"></div>'+
+        '<p><a class="btn btn-lg btn-success" data-ng-click="nextVideo()">Next</a></p>',
       scope: {
         videos: "="
       },
       controller: function($scope, $element, $timeout) {
-        function onPlayerReady(e) {
+
+        function startVideo(){
           var timerClick = function(){
             $timeout(function() {
               if ($scope.timer > 0 ) {
                 $scope.timer--;
-                console.log($scope.timer);
                 $scope.$apply();
                 timerClick();
               }
               else{
-                onTimeEnd();
+                $scope.player.seekTo($scope.currentVideo.start).playVideo();
               }
             } , 1000);
-          };
-          var onTimeEnd = function(){
-            $scope.player.seekTo($scope.currentVideo.start).playVideo();
           };
 
           $scope.player.seekTo(0.5).pauseVideo();
           timerClick();
         }
+
+        function nextIfFinished(e){
+          if (e.data == 0){
+            $scope.nextVideo();
+          }
+        }
+
+        $scope.nextVideo = function() {
+          var nextVideo = $scope.getRandomVideo();
+
+          $scope.timer = 5;
+
+          console.info("Loading Video "+ nextVideo.link);
+          $scope.player.loadVideoById(nextVideo.link);
+          startVideo();
+        };
 
         $scope.getRandomVideo = function(){
           this.currentVideo =  this.videos[Math.floor(Math.random()* this.videos.length)];
@@ -77,18 +92,20 @@ angular.module('batuApp')
         };
 
         $scope.onYoutubeReady= function () {
+          $scope.currentVideo =$scope.videos[0];
           $scope.player = new YT.Player('ytplayer', {
-            videoId: $scope.getRandomVideo().link,
+            videoId: $scope.currentVideo.link,
             events: {
-              'onReady': onPlayerReady
+              'onReady': startVideo,
+              'onStateChange': nextIfFinished
             }
           });
+
         };
       },
 
       link: function(scope, element, attr){
-        scope.timer = 10;
-
+        scope.timer = 7;
         var tag = document.createElement('script');
         var firstScriptTag = document.getElementsByTagName('script')[0];
         tag.src = "https://www.youtube.com/player_api";
