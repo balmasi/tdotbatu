@@ -50,8 +50,11 @@ angular.module('batuApp')
     return {
       restrict: 'E',
       template:
-        '<h3 id="timer" data-ng-hide="timer == 0">{{timer}}</h3><div id="ytplayer"></div>'+
-        '<p><a class="btn btn-lg btn-success" data-ng-click="nextVideo()">Next</a></p>',
+          '<div id="youtubeWrapper">' +
+            '<h3 id="timer" data-ng-hide="timer == 0">Starting video in {{timer}}s</h3>'+
+            '<div id="ytplayer"></div>' +
+          '</div>'+
+        '<p class="buttonSet"><a class="btn btn-lg btn-success" data-ng-click="nextVideo()">Next</a></p>',
       scope: {
         videos: "="
       },
@@ -109,6 +112,10 @@ angular.module('batuApp')
           $scope.currentVideo = $scope.getRandomVideo();
           $scope.player = new YT.Player('ytplayer', {
             videoId: $scope.currentVideo.link,
+            playerVars: {
+              modestbranding: 1,
+              wmode: "opaque"
+            },
             events: {
               'onReady': startVideo,
               'onStateChange': nextIfFinished
