@@ -3,42 +3,42 @@
 angular.module('batuApp')
   .controller('MainCtrl', function ($scope) {
     $scope.videoCollection = [
-        { link: "0KSOMA3QBU0", start: 30 },
-        { link: "hHimjVYsd6I", start: 20},
-        { link: "kHue-HaXXzg", start: 10 },
+        { link: "0KSOMA3QBU0", start: 30, watched: false },
+        { link: "hHimjVYsd6I", start: 20, watched: false },
+        { link: "kHue-HaXXzg", start: 10, watched: false },
 
-//      { link: "t1DZfMfJ63M", start: 0 },
-//      { link: "7rEyS90qpDk", start: 0 },
-//      { link: "eCuYHYdLc_s", start: 0 },
-//      { link: "IbC5kEUIgF4", start: 0 },
-//      { link: "IvLXoWs00Rs", start: 0 },
-//      { link: "nNRm_SVo86k", start: 0 },
-//      { link: "weM6f7ctNXw", start: 0 },
-//      { link: "2zzzRiy7L4Y", start: 0 },
-//      { link: "ie_t_uJTibA", start: 0 },
-//      { link: "50n0xLkV9Mo", start: 0 },
-//      { link: "abJh99APBaA", start: 0 },
-//      { link: "qm-UvTyLN-E", start: 0 },
-//      { link: "5d47OFYeb-g", start: 0 },
-//      { link: "9ncjTGtMe20", start: 0 },
-//      { link: "qRsHZaeIOi4", start: 0 },
-//      { link: "n7ogS7chMis", start: 0 },
-//      { link: "_tVO56JlUxs", start: 0 },
-//      { link: "rar-4aSxGYA", start: 0 },
-//      { link: "VDZBlD8O6Ys", start: 0 },
-//      { link: "RBWNcaVV_8M", start: 0 },
-//      { link: "oAmaXFqRAIQ", start: 0 },
-//      { link: "FSJGTKDc114", start: 0 },
-//      { link: "OxAVUPt-Wi8", start: 0 },
-//      { link: "2WlFXCWJcWg", start: 0 },
-//      { link: "O7_rwXjkLzA", start: 0 },
-//      { link: "AjIq4s8m2WU", start: 0 },
-//      { link: "FU2L-U9ky44", start: 0 },
-//      { link: "IzSZO7JTqhE", start: 0 },
-//      { link: "OuuvDFOEBKU", start: 0 },
-//      { link: "AVuHBHYFV_8", start: 0 },
-//      { link: "NWF1521xMb4", start: 0 },
-//      { link: "gEMcKbgZ0No", start: 0 }
+//      { link: "t1DZfMfJ63M", start: 0, watched: false },
+//      { link: "7rEyS90qpDk", start: 0, watched: false },
+//      { link: "eCuYHYdLc_s", start: 0, watched: false },
+//      { link: "IbC5kEUIgF4", start: 0, watched: false },
+//      { link: "IvLXoWs00Rs", start: 0, watched: false },
+//      { link: "nNRm_SVo86k", start: 0, watched: false },
+//      { link: "weM6f7ctNXw", start: 0, watched: false },
+//      { link: "2zzzRiy7L4Y", start: 0, watched: false },
+//      { link: "ie_t_uJTibA", start: 0, watched: false },
+//      { link: "50n0xLkV9Mo", start: 0, watched: false },
+//      { link: "abJh99APBaA", start: 0, watched: false },
+//      { link: "qm-UvTyLN-E", start: 0, watched: false },
+//      { link: "5d47OFYeb-g", start: 0, watched: false },
+//      { link: "9ncjTGtMe20", start: 0, watched: false },
+//      { link: "qRsHZaeIOi4", start: 0, watched: false },
+//      { link: "n7ogS7chMis", start: 0, watched: false },
+//      { link: "_tVO56JlUxs", start: 0, watched: false },
+//      { link: "rar-4aSxGYA", start: 0, watched: false },
+//      { link: "VDZBlD8O6Ys", start: 0, watched: false },
+//      { link: "RBWNcaVV_8M", start: 0, watched: false },
+//      { link: "oAmaXFqRAIQ", start: 0, watched: false },
+//      { link: "FSJGTKDc114", start: 0, watched: false },
+//      { link: "OxAVUPt-Wi8", start: 0, watched: false },
+//      { link: "2WlFXCWJcWg", start: 0, watched: false },
+//      { link: "O7_rwXjkLzA", start: 0, watched: false },
+//      { link: "AjIq4s8m2WU", start: 0, watched: false },
+//      { link: "FU2L-U9ky44", start: 0, watched: false },
+//      { link: "IzSZO7JTqhE", start: 0, watched: false },
+//      { link: "OuuvDFOEBKU", start: 0, watched: false },
+//      { link: "AVuHBHYFV_8", start: 0, watched: false },
+//      { link: "NWF1521xMb4", start: 0, watched: false },
+//      { link: "gEMcKbgZ0No", start: 0, watched: false }
     ];
 
   }).directive('youtube',function(){
@@ -87,12 +87,24 @@ angular.module('batuApp')
         };
 
         $scope.getRandomVideo = function(){
+          var numWatchedChecked = 0,
+              exhaustedList = false;
+
           this.currentVideo =  this.videos[Math.floor(Math.random()* this.videos.length)];
+
+          while ( this.currentVideo.watched == true && exhaustedList == false) {
+            this.currentVideo =  this.videos[Math.floor(Math.random()* this.videos.length)];
+            numWatchedChecked++;
+
+            if (numWatchedChecked !== this.videos.length) exhaustedList = true;
+          }
+
+          this.currentVideo.watched = true;
           return this.currentVideo;
         };
 
         $scope.onYoutubeReady= function () {
-          $scope.currentVideo =$scope.videos[0];
+          $scope.currentVideo = $scope.getRandomVideo();
           $scope.player = new YT.Player('ytplayer', {
             videoId: $scope.currentVideo.link,
             events: {
