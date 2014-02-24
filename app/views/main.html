@@ -1,8 +1,11 @@
 <nav class="pull-left">
-    <ul class="nav nav-list nav-stacked span3">
-        <li ng-repeat-start="(group, videos) in groupedCollection" class="nav-header">{{group}}</li>
+    <ul class="span4">
+        <li ng-repeat-start="(group, videos) in groupedCollection" class="navHeader">{{group}}</li>
         <li ng-repeat="v in videos">
-            <a>{{v.link}}<img data-ng-show="v.watched" src="images/check.png"/></a>
+            <a>{{v.name}}
+                <img data-ng-show="v.level > 0" src="images/check.png"/>
+                <img data-ng-show="v.level < 0" src="images/bad.png"/>
+            </a>
         </li>
         <br data-ng-hide="true" ng-repeat-end/>
     </ul>
@@ -13,7 +16,7 @@
         <youtube videos="videoCollection"></youtube>
     </div>
 
-    <div class="foot">
-        <p>para minha familia ♥</p>
-    </div>
+    <!--<div class="foot">-->
+        <!--<p>para minha familia ♥</p>-->
+    <!--</div>-->
 </div>
