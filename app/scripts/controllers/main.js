@@ -37,12 +37,6 @@ angular.module('batuApp')
 
     $scope.groupedCollection = _.groupBy($scope.videoCollection, 'group');
 
-//    $scope.$watch('videoCollection', function() {
-//      $scope.groupedCollection = _.groupBy($scope.videoCollection, 'group');
-//    }, true);
-
-
-
   }).directive('youtube',function(){
     return {
       restrict: 'E',
