@@ -56,7 +56,7 @@ angular.module('batuApp')
 
         function startVideo(){
           var timerClick = function(){
-            $timeout(function() {
+            $scope.timeOutPromise = $timeout(function() {
               if ($scope.timer > 0 ) {
                 $scope.timer--;
                 $scope.$apply();
@@ -79,6 +79,7 @@ angular.module('batuApp')
         }
 
         $scope.nextVideo = function() {
+          $timeout.cancel(($scope.timeOutPromise));
           var nextVideo = $scope.getRandomVideo();
           $scope.timer = 15;
           $scope.player.loadVideoById(nextVideo.link);
