@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('batuApp')
-  .controller('MainCtrl', function ($scope) {
+  .controller('MainCtrl', [ '$scope', function ($scope) {
     $scope.videoCollection = [
       { name: "Rhythm", link: "t1DZfMfJ63M", start: 0, level: 0, group: "Samba Reggae"},
       { name: "#1", link: "7rEyS90qpDk", start: 3, level: 0, group: "Samba Reggae" },
@@ -37,7 +37,7 @@ angular.module('batuApp')
 
     $scope.groupedCollection = _.groupBy($scope.videoCollection, 'group');
 
-  }).directive('youtube',function(){
+  }]).directive('youtube',function(){
     return {
       restrict: 'E',
       template:
@@ -52,7 +52,7 @@ angular.module('batuApp')
       scope: {
         videos: "="
       },
-      controller: function($scope, $element, $timeout) {
+      controller: ['$scope', '$element', '$timeout', function($scope, $element, $timeout) {
 
         function startVideo(){
           var timerClick = function(){
@@ -116,7 +116,7 @@ angular.module('batuApp')
           });
 
         };
-      },
+      }],
 
       link: function(scope, element, attr){
         scope.timer = 15;
