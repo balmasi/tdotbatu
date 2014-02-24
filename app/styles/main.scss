@@ -3,6 +3,9 @@ $icon-font-path: "/bower_components/sass-bootstrap/fonts/";
 @import 'sass-bootstrap/lib/bootstrap';
 
 $playerSize: 640px;
+.container{
+  margin-left:300px;
+}
 
 .browsehappy {
   margin: 0.2em 0;
@@ -30,7 +33,7 @@ body {
 }
 
 #timer {
-  background: rgba(0,0,0,0.7);
+  background: rgba(0,0,0,0.35);
   z-index: 2;
   position: absolute;
   bottom: 45%;
@@ -87,6 +90,9 @@ nav{
   margin-top:60px;
 }
 
+.buttonSet .btn{
+  margin-right:10px;
+}
 /* Responsive: Portrait tablets and up */
 @media screen and (min-width: 768px) {
   .container {
