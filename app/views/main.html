@@ -3,8 +3,8 @@
         <li ng-repeat-start="(group, videos) in groupedCollection" class="navHeader">{{group}}</li>
         <li ng-repeat="v in videos">
             <a>{{v.name}}
-                <img data-ng-show="v.level > 0" src="images/check.png"/>
                 <img data-ng-show="v.level < 0" src="images/bad.png"/>
+                <img data-ng-show="v.level > 0" src="images/check.png"/>
             </a>
         </li>
         <br data-ng-hide="true" ng-repeat-end/>
