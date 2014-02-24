@@ -2,38 +2,45 @@
 
 angular.module('batuApp')
   .controller('MainCtrl', [ '$scope', function ($scope) {
-    $scope.videoCollection = [
-      { name: "Rhythm", link: "t1DZfMfJ63M", start: 0, level: 0, group: "Samba Reggae"},
-      { name: "#1", link: "7rEyS90qpDk", start: 3, level: 0, group: "Samba Reggae" },
-      { name: "#2", link: "eCuYHYdLc_s", start: 3, level: 0, group: "Samba Reggae" },
-      { name: "#3", link: "IbC5kEUIgF4", start: 3.2, level: 0, group: "Samba Reggae" },
-      { name: "#4", link: "IvLXoWs00Rs", start: 3.3, level: 0, group: "Samba Reggae" },
-      { name: "#5", link: "nNRm_SVo86k", start: 3.3, level: 0, group: "Samba Reggae" },
-      { name: "#6", link: "weM6f7ctNXw", start: 1, level: 0, group: "Samba Reggae" },
-      { name: "#7", link: "2zzzRiy7L4Y", start: 3, level: 0, group: "Samba Reggae" },
-      { name: "#8", link: "ie_t_uJTibA", start: 3.3, level: 0, group: "Samba Reggae" },
-      { name: "Rhythm", link: "50n0xLkV9Mo", start: 0, level: 0, group: "Reggae" },
-      { name: "#1", link: "abJh99APBaA", start: 3, level: 0, group: "Reggae" },
-      { name: "#2", link: "qm-UvTyLN-E", start: 3, level: 0, group: "Reggae" },
-      { name: "Rhythm", link: "5d47OFYeb-g", start: 0, level: 0, group: "Rumba" },
-      { name: "#1", link: "9ncjTGtMe20", start: 3, level: 0, group: "Rumba" },
-      { name: "#2", link: "qRsHZaeIOi4", start: 3, level: 0, group: "Rumba" },
-      { name: "Rhythm", link: "_tVO56JlUxs", start: 0, level: 0, group: "Raggamuffin" },
-      { name: "#1", link: "rar-4aSxGYA", start: 3, level: 0, group: "Raggamuffin" },
-      { name: "#2", link: "VDZBlD8O6Ys", start: 3, level: 0, group: "Raggamuffin" },
-      { name: "#3", link: "RBWNcaVV_8M", start: 3, level: 0, group: "Raggamuffin" },
-      { name: "#4", link: "oAmaXFqRAIQ", start: 1, level: 0, group: "Raggamuffin" },
-      { name: "Rhythm", link: "FSJGTKDc114", start: 0, level: 0, group: "3:2" },
-      { name: "#1", link: "OxAVUPt-Wi8", start: 3, level: 0, group: "3:2" },
-      { name: "#2", link: "2WlFXCWJcWg", start: 2, level: 0, group: "3:2" },
-      { name: "#3", link: "O7_rwXjkLzA", start: 3, level: 0, group: "3:2" },
-      { name: "#4", link: "AjIq4s8m2WU", start: 3, level: 0, group: "3:2" },
-      { name: "#5", link: "FU2L-U9ky44", start: 3, level: 0, group: "3:2" },
-      { name: "#6", link: "IzSZO7JTqhE", start: 3, level: 0, group: "3:2" },
-      { name: "Rhythm", link: "OuuvDFOEBKU", start: 0, level: 0, group: "Timbalada" },
-      { name: "#1", link: "AVuHBHYFV_8", start: 3, level: 0, group: "Timbalada" },
-      { name: "#2", link: "NWF1521xMb4", start: 3, level: 0, group: "Timbalada" },
-      { name: "#1", link: "gEMcKbgZ0No", start: 0, level: 0, group: "Samba de Roda" }]
+    var savedItems = localStorage.getItem("videoCollection");
+    if ( savedItems ){
+      $scope.videoCollection = JSON.parse(savedItems);
+    }
+    else {
+      $scope.videoCollection = [
+        { name: "Rhythm", link: "t1DZfMfJ63M", start: 0, level: 0, group: "Samba Reggae"},
+        { name: "#1", link: "7rEyS90qpDk", start: 3, level: 0, group: "Samba Reggae" },
+        { name: "#2", link: "eCuYHYdLc_s", start: 3, level: 0, group: "Samba Reggae" },
+        { name: "#3", link: "IbC5kEUIgF4", start: 3.2, level: 0, group: "Samba Reggae" },
+        { name: "#4", link: "IvLXoWs00Rs", start: 3.3, level: 0, group: "Samba Reggae" },
+        { name: "#5", link: "nNRm_SVo86k", start: 3.3, level: 0, group: "Samba Reggae" },
+        { name: "#6", link: "weM6f7ctNXw", start: 1, level: 0, group: "Samba Reggae" },
+        { name: "#7", link: "2zzzRiy7L4Y", start: 3, level: 0, group: "Samba Reggae" },
+        { name: "#8", link: "ie_t_uJTibA", start: 3.3, level: 0, group: "Samba Reggae" },
+        { name: "Rhythm", link: "50n0xLkV9Mo", start: 0, level: 0, group: "Reggae" },
+        { name: "#1", link: "abJh99APBaA", start: 3, level: 0, group: "Reggae" },
+        { name: "#2", link: "qm-UvTyLN-E", start: 3, level: 0, group: "Reggae" },
+        { name: "Rhythm", link: "5d47OFYeb-g", start: 0, level: 0, group: "Rumba" },
+        { name: "#1", link: "9ncjTGtMe20", start: 3, level: 0, group: "Rumba" },
+        { name: "#2", link: "qRsHZaeIOi4", start: 3, level: 0, group: "Rumba" },
+        { name: "Rhythm", link: "_tVO56JlUxs", start: 0, level: 0, group: "Raggamuffin" },
+        { name: "#1", link: "rar-4aSxGYA", start: 3, level: 0, group: "Raggamuffin" },
+        { name: "#2", link: "VDZBlD8O6Ys", start: 3, level: 0, group: "Raggamuffin" },
+        { name: "#3", link: "RBWNcaVV_8M", start: 3, level: 0, group: "Raggamuffin" },
+        { name: "#4", link: "oAmaXFqRAIQ", start: 1, level: 0, group: "Raggamuffin" },
+        { name: "Rhythm", link: "FSJGTKDc114", start: 0, level: 0, group: "3:2" },
+        { name: "#1", link: "OxAVUPt-Wi8", start: 3, level: 0, group: "3:2" },
+        { name: "#2", link: "2WlFXCWJcWg", start: 2, level: 0, group: "3:2" },
+        { name: "#3", link: "O7_rwXjkLzA", start: 3, level: 0, group: "3:2" },
+        { name: "#4", link: "AjIq4s8m2WU", start: 3, level: 0, group: "3:2" },
+        { name: "#5", link: "FU2L-U9ky44", start: 3, level: 0, group: "3:2" },
+        { name: "#6", link: "IzSZO7JTqhE", start: 3, level: 0, group: "3:2" },
+        { name: "Rhythm", link: "OuuvDFOEBKU", start: 0, level: 0, group: "Timbalada" },
+        { name: "#1", link: "AVuHBHYFV_8", start: 3, level: 0, group: "Timbalada" },
+        { name: "#2", link: "NWF1521xMb4", start: 3, level: 0, group: "Timbalada" },
+        { name: "#1", link: "gEMcKbgZ0No", start: 0, level: 0, group: "Samba de Roda" }]
+    }
+
 
     $scope.groupedCollection = _.groupBy($scope.videoCollection, 'group');
 
@@ -44,11 +51,13 @@ angular.module('batuApp')
         '<div id="youtubeWrapper">' +
           '<h3 id="timer" data-ng-hide="timer == 0">Starting video in {{timer}}s</h3>'+
           '<div id="ytplayer"></div>' +
-          '</div>'+
           '<p class="buttonSet">' +
           '<a class="btn btn-lg btn-success" data-ng-click="currentVideo.level = 1;nextVideo()">Got it!</a>' +
           '<a class="btn btn-lg btn-danger" data-ng-click="currentVideo.level = -1;nextVideo()">Mark as Tough</a>' +
-          '</p>',
+          '<a id="clear" class="btn btn-lg btn-primary" data-ng-click="clearHistory()">Clear Practice History</a>' +
+          '</p>' +
+          '</div>'
+      ,
       scope: {
         videos: "="
       },
@@ -79,11 +88,20 @@ angular.module('batuApp')
         }
 
         $scope.nextVideo = function() {
+          localStorage.setItem("videoCollection", JSON.stringify($scope.videos));
           $timeout.cancel(($scope.timeOutPromise));
           var nextVideo = $scope.getRandomVideo();
           $scope.timer = 15;
           $scope.player.loadVideoById(nextVideo.link);
           startVideo();
+        };
+
+        $scope.clearHistory = function(){
+          for (var i=0; i< $scope.videos.length; i++){
+            var vid = $scope.videos[i];
+            vid.level = 0;
+          }
+          localStorage.removeItem("videoCollection");
         };
 
         $scope.getRandomVideo = function(){
